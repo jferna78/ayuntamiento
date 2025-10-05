@@ -1,5 +1,5 @@
-Dependencias
+# Dependencias
 node_modules/
 
-Fichero de variables de entorno
+# Fichero de variables de entorno
 .env
