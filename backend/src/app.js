@@ -1,25 +1,30 @@
-// 1. Cargar variables de entorno
+// Cargar variables de entorno
 require('dotenv').config();
 
-// 2. Importar dependencias
+// Importar dependencias
 const express = require('express');
 const cors = require('cors');
 
-// 3. Inicializar la aplicación de Express
+// Importar las rutas de autenticación
+const authRoutes = require('./routes/auth.routes');
+
+// Inicializar la aplicación de Express
 const app = express();
 
-// 4. Configurar Middlewares
-// Permite peticiones desde cualquier origen (configurable para producción)
-app.use(cors());
-// Permite al servidor entender y procesar datos en formato JSON
+// Configurar Middlewares
 app.use(express.json());
+app.use(cors());
 
-// 5. Definir una ruta de prueba
+// Definir una ruta de prueba
 app.get('/', (req, res) => {
   res.send('API del Sistema de Gestión de Proveedores está funcionando.');
 });
 
-// 6. Iniciar el servidor
+// Usar las rutas de autenticación
+// Todas las rutas definidas en auth.routes.js tendrán el prefijo /auth
+app.use('/auth', authRoutes);
+
+// Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
