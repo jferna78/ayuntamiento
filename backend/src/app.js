@@ -7,6 +7,7 @@ const cors = require('cors');
 
 // Importar las rutas de autenticación
 const authRoutes = require('./routes/auth.routes');
+const proveedorRoutes = require('./routes/proveedor.routes');
 
 // Inicializar la aplicación de Express
 const app = express();
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 // Usar las rutas de autenticación
 // Todas las rutas definidas en auth.routes.js tendrán el prefijo /auth
 app.use('/auth', authRoutes);
+app.use('/proveedores', proveedorRoutes);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
