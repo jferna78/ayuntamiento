@@ -1,0 +1,188 @@
+paths:
+  /proveedores:
+    get:
+      summary: Obtener todos los proveedores
+      description: Devuelve la lista completa de todos los proveedores registrados en el sistema.
+      tags:
+        - Proveedores
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de proveedores obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proveedor'
+        '401':
+          description: No autenticado - Token inválido o no proporcionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Token inválido o no proporcionado
+
+    post:
+      summary: Crear un nuevo proveedor
+      description: Crea un nuevo proveedor en el sistema con los datos proporcionados.
+      tags:
+        - Proveedores
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+      responses:
+        '201':
+          description: Proveedor creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+        '400':
+          description: Datos inválidos o CIF duplicado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                cifDuplicado:
+                  value:
+                    message: El proveedor con ese CIF ya existe
+                datosInvalidos:
+                  value:
+                    message: Todos los campos son obligatorios
+        '401':
+          description: No autenticado - Token inválido o no proporcionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /proveedores/{cif}:
+    get:
+      summary: Obtener un proveedor por CIF
+      description: Devuelve los detalles completos de un proveedor específico.
+      tags:
+        - Proveedores
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: cif
+          required: true
+          schema:
+            type: string
+          description: CIF del proveedor a consultar
+          example: B12345678
+      responses:
+        '200':
+          description: Proveedor encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+        '401':
+          description: No autenticado - Token inválido o no proporcionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Proveedor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Proveedor no encontrado
+
+    put:
+      summary: Actualizar un proveedor existente
+      description: Actualiza los datos de un proveedor específico identificado por su CIF.
+      tags:
+        - Proveedores
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: cif
+          required: true
+          schema:
+            type: string
+          description: CIF del proveedor a actualizar
+          example: B12345678
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+      responses:
+        '200':
+          description: Proveedor actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Todos los campos son obligatorios
+        '401':
+          description: No autenticado - Token inválido o no proporcionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Proveedor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Proveedor no encontrado
+
+    delete:
+      summary: Eliminar un proveedor
+      description: Elimina permanentemente un proveedor del sistema.
+      tags:
+        - Proveedores
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: cif
+          required: true
+          schema:
+            type: string
+          description: CIF del proveedor a eliminar
+          example: B12345678
+      responses:
+        '204':
+          description: Proveedor eliminado exitosamente
+        '401':
+          description: No autenticado - Token inválido o no proporcionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Proveedor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Proveedor no encontrado

@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: API de Gestión de Proveedores
+  version: 1.0.0
+  description: API REST para la gestión de proveedores del Ayuntamiento de Villa de los Fresnos. Incluye autenticación JWT y operaciones CRUD completas.
+  contact:
+    name: Ayuntamiento de Villa de los Fresnos
+
+servers:
+  - url: '{SERVER_HOST}:{PORT}'
+    description: Servidor configurado dinámicamente desde variables de entorno (SERVER_HOST y PORT)
+    variables:
+      SERVER_HOST:
+        default: http://localhost
+        description: Host del servidor (configurable en .env)
+      PORT:
+        default: '3000'
+        description: Puerto del servidor (configurable en .env)
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT obtenido del endpoint /auth/login
+
+  schemas:
+    Proveedor:
+      type: object
+      required:
+        - cif
+        - nombre
+      properties:
+        cif:
+          type: string
+          description: CIF único del proveedor (identificador principal, obligatorio)
+          example: B12345678
+        nombre:
+          type: string
+          description: Nombre comercial o razón social (obligatorio)
+          example: Suministros Frescía S.L.
+        actividad:
+          type: string
+          description: Descripción de la actividad o sector (opcional)
+          example: Material de oficina
+        direccion:
+          type: string
+          description: Dirección fiscal o principal (opcional)
+          example: Calle Mayor 123
+        localidad:
+          type: string
+          description: Municipio o ciudad (opcional)
+          example: Villa de los Fresnos
+        codigoPostal:
+          type: string
+          description: Código postal (opcional)
+          example: "28999"
+        telefono:
+          type: string
+          description: Teléfono de contacto (opcional)
+          example: "912345678"
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensaje descriptivo del error
+
+tags:
+  - name: Autenticación
+    description: Endpoints para la autenticación de usuarios
+  - name: Proveedores
+    description: Endpoints para la gestión de proveedores (requieren autenticación)
+
+paths: {}

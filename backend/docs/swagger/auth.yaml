@@ -1,0 +1,50 @@
+paths:
+  /auth/login:
+    post:
+      summary: Autenticar usuario
+      description: Valida las credenciales del usuario y devuelve un token JWT si son correctas.
+      tags:
+        - Autenticación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email del usuario
+                  example: admin@local.es
+                password:
+                  type: string
+                  format: password
+                  description: Contraseña del usuario
+                  example: password123
+      responses:
+        '200':
+          description: Autenticación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Login exitoso
+                  token:
+                    type: string
+                    description: Token JWT para autenticación en endpoints protegidos
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '401':
+          description: Credenciales incorrectas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Credenciales incorrectas
