@@ -1,5 +1,56 @@
-# Dependencias
+# ====================================
+# DEPENDENCIAS
+# ====================================
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Fichero de variables de entorno
+# ====================================
+# VARIABLES DE ENTORNO
+# ====================================
 .env
+.env.local
+.env.*.local
+
+# ====================================
+# ANGULAR
+# ====================================
+# Archivos de compilación
+/frontend/dist/
+/frontend/.angular/
+/frontend/tmp/
+/frontend/out-tsc/
+
+# IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ====================================
+# NODE.JS / EXPRESS
+# ====================================
+# Logs
+logs/
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# ====================================
+# PRUEBAS
+# ====================================
+/coverage/
+/.nyc_output/
+*.lcov
+
+# ====================================
+# OTROS
+# ====================================
+# Archivos temporales
+*.tmp
+*.temp

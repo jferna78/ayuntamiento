@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Escudo institucional -->
+  <path d="M16 2 L28 8 L28 20 Q28 26 16 30 Q4 26 4 20 L4 8 Z" fill="#2c5282" stroke="#1a365d" stroke-width="1"/>
+  <circle cx="16" cy="14" r="5" fill="#ffffff"/>
+  <rect x="14" y="18" width="4" height="7" fill="#ffffff" rx="0.5"/>
+</svg>
