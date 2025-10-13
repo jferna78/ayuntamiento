@@ -1,0 +1,64 @@
+<div class="dashboard-wrapper">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <img src="/images/escudo-ayuntamiento.png" alt="Escudo" class="header-escudo">
+      <div class="header-title">
+        <h1>Sistema de Gestión Administrativa</h1>
+        <p class="header-subtitle">Ayuntamiento de Villa de los Fresnos</p>
+      </div>
+      <button (click)="logout()" class="logout-button">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <div class="welcome-section">
+      <h2>Módulos de Gestión</h2>
+      <p>Seleccione el área administrativa a la que desea acceder</p>
+    </div>
+
+    <div class="modules-grid">
+      <!-- Módulo de Proveedores - Activo -->
+      <div class="module-card active">
+        <div class="module-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 7h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 4h4v3h-4V4zm10 16H4V9h16v11z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Gestión de Proveedores</h3>
+        <p>Administración del registro de proveedores del ayuntamiento</p>
+        <button class="module-button">Acceder</button>
+      </div>
+
+      <!-- Módulos futuros - Placeholders -->
+      <div class="module-card placeholder">
+        <div class="module-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Módulo en desarrollo</h3>
+        <p>Próximamente disponible</p>
+      </div>
+
+      <div class="module-card placeholder">
+        <div class="module-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Módulo en desarrollo</h3>
+        <p>Próximamente disponible</p>
+      </div>
+
+      <div class="module-card placeholder">
+        <div class="module-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Módulo en desarrollo</h3>
+        <p>Próximamente disponible</p>
+      </div>
+    </div>
+  </main>
+</div>
