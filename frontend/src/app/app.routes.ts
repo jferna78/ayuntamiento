@@ -17,12 +17,19 @@ export const routes: Routes = [
   },
 
   // Rutas privadas - Protegidas con authGuard
-  // Por ahora solo definimos la ruta del dashboard (se implementará en la siguiente fase)
   {
     path: 'dashboard',
     canActivate: [authGuard],
     loadComponent: () => import('./components/private/dashboard/dashboard.component')
-      .then(m => m.DashboardComponent)
+      .then(m => m.DashboardComponent),
+    children: [
+      // Rutas del módulo de proveedores
+      {
+        path: 'proveedores',
+        loadComponent: () => import('./components/private/modules/proveedores/proveedor-list/proveedor-list.component')
+          .then(m => m.ProveedorListComponent)
+      }
+    ]
   },
 
   // Ruta wildcard - redirige al login si la ruta no existe
