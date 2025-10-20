@@ -44,8 +44,7 @@ export class ProveedorListComponent implements OnInit {
   }
 
   navigateToCreate(): void {
-    // Funcionalidad pendiente de implementar
-    console.log('Crear proveedor - Funcionalidad pendiente');
+    this.router.navigate(['/dashboard/proveedores/crear']);
   }
 
   navigateToEdit(): void {

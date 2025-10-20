@@ -28,6 +28,11 @@ export const routes: Routes = [
         path: 'proveedores',
         loadComponent: () => import('./components/private/modules/proveedores/proveedor-list/proveedor-list.component')
           .then(m => m.ProveedorListComponent)
+      },
+      {
+        path: 'proveedores/crear',
+        loadComponent: () => import('./components/private/modules/proveedores/proveedor-create/proveedor-create.component')
+          .then(m => m.ProveedorCreateComponent)
       }
     ]
   },
