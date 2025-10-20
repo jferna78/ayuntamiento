@@ -1,0 +1,153 @@
+<div class="proveedor-edit-container">
+  <div class="header">
+    <div class="header-title-section">
+      <button class="back-button" (click)="onCancel()" title="Volver a la lista">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z" fill="currentColor"/>
+        </svg>
+      </button>
+      <h1>Editar Proveedor</h1>
+    </div>
+  </div>
+
+  <!-- Mensajes de éxito y error -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-error">
+    {{ error }}
+  </div>
+
+  <!-- Estado de carga -->
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando datos del proveedor...</p>
+  </div>
+
+  <!-- Formulario de edición -->
+  <div *ngIf="!isLoading && !error" class="form-card">
+    <form [formGroup]="proveedorForm" (ngSubmit)="onSubmit()">
+
+      <!-- Campos obligatorios -->
+      <div class="form-section">
+        <h2>Información Obligatoria</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cif">CIF <span class="required">*</span></label>
+            <input
+              type="text"
+              id="cif"
+              formControlName="cif"
+              class="disabled-field"
+              readonly
+            >
+            <span class="helper-text">El CIF no se puede modificar</span>
+          </div>
+
+          <div class="form-group">
+            <label for="nombre">Nombre/Razón Social <span class="required">*</span></label>
+            <input
+              type="text"
+              id="nombre"
+              formControlName="nombre"
+              [class.invalid]="isFieldInvalid('nombre')"
+              placeholder="Ej: TecnoSoluciones S.L."
+            >
+            <span *ngIf="isFieldInvalid('nombre')" class="error-message">
+              {{ getFieldError('nombre') }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Campos opcionales -->
+      <div class="form-section">
+        <h2>Información Adicional (Opcional)</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="actividad">Actividad</label>
+            <input
+              type="text"
+              id="actividad"
+              formControlName="actividad"
+              placeholder="Ej: Informática"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input
+              type="text"
+              id="telefono"
+              formControlName="telefono"
+              [class.invalid]="isFieldInvalid('telefono')"
+              placeholder="Ej: 918987654"
+            >
+            <span *ngIf="isFieldInvalid('telefono')" class="error-message">
+              {{ getFieldError('telefono') }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="direccion">Dirección</label>
+            <input
+              type="text"
+              id="direccion"
+              formControlName="direccion"
+              placeholder="Ej: Av. de la Constitución, 24"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="localidad">Localidad</label>
+            <input
+              type="text"
+              id="localidad"
+              formControlName="localidad"
+              placeholder="Ej: Villa de los Fresnos"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="codigoPostal">Código Postal</label>
+            <input
+              type="text"
+              id="codigoPostal"
+              formControlName="codigoPostal"
+              [class.invalid]="isFieldInvalid('codigoPostal')"
+              placeholder="Ej: 28696"
+            >
+            <span *ngIf="isFieldInvalid('codigoPostal')" class="error-message">
+              {{ getFieldError('codigoPostal') }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onCancel()"
+          [disabled]="isSubmitting"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="isSubmitting"
+        >
+          {{ isSubmitting ? 'Actualizando...' : 'Actualizar Proveedor' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

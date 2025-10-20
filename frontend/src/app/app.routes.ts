@@ -33,6 +33,11 @@ export const routes: Routes = [
         path: 'proveedores/crear',
         loadComponent: () => import('./components/private/modules/proveedores/proveedor-create/proveedor-create.component')
           .then(m => m.ProveedorCreateComponent)
+      },
+      {
+        path: 'proveedores/editar/:cif',
+        loadComponent: () => import('./components/private/modules/proveedores/proveedor-edit/proveedor-edit.component')
+          .then(m => m.ProveedorEditComponent)
       }
     ]
   },

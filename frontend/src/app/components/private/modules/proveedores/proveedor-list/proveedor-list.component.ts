@@ -47,9 +47,8 @@ export class ProveedorListComponent implements OnInit {
     this.router.navigate(['/dashboard/proveedores/crear']);
   }
 
-  navigateToEdit(): void {
-    // Funcionalidad pendiente de implementar
-    console.log('Editar proveedor - Funcionalidad pendiente');
+  navigateToEdit(cif: string): void {
+    this.router.navigate(['/dashboard/proveedores/editar', cif]);
   }
 
   deleteProveedor(): void {

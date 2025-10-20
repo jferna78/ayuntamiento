@@ -46,7 +46,7 @@
           <td>{{ proveedor.actividad || '-' }}</td>
           <td>{{ proveedor.telefono || '-' }}</td>
           <td class="actions">
-            <button class="btn btn-outline" (click)="navigateToEdit()">
+            <button class="btn btn-outline" (click)="navigateToEdit(proveedor.cif)">
               Editar
             </button>
             <button class="btn btn-danger" (click)="deleteProveedor()">
