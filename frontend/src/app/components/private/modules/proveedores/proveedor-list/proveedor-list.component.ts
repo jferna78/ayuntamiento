@@ -51,9 +51,31 @@ export class ProveedorListComponent implements OnInit {
     this.router.navigate(['/dashboard/proveedores/editar', cif]);
   }
 
-  deleteProveedor(): void {
-    // Funcionalidad pendiente de implementar
-    console.log('Eliminar proveedor - Funcionalidad pendiente');
+  deleteProveedor(cif: string, nombre: string): void {
+    const confirmacion = confirm(`¿Está seguro de que desea eliminar el proveedor "${nombre}"?\n\nEsta acción no se puede deshacer.`);
+
+    if (confirmacion) {
+      this.proveedorService.deleteProveedor(cif).subscribe({
+        next: () => {
+          this.successMessage = `Proveedor "${nombre}" eliminado correctamente.`;
+          this.loadProveedores();
+
+          // Limpiar mensaje de éxito después de 3 segundos
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 3000);
+        },
+        error: (err) => {
+          this.error = err.error?.message || 'Error al eliminar el proveedor. Por favor, inténtelo de nuevo.';
+          console.error('Error al eliminar proveedor:', err);
+
+          // Limpiar mensaje de error después de 5 segundos
+          setTimeout(() => {
+            this.error = null;
+          }, 5000);
+        }
+      });
+    }
   }
 
   goBack(): void {
